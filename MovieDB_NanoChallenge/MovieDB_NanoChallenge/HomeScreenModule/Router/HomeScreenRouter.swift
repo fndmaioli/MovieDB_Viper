@@ -12,7 +12,7 @@ import UIKit
 class HomeScreenRouter: HomeScreenRouterProtocol {
     
     
-    func navigateToDetalMovieView(with movie: Movie, view: UIViewController) {
+    func navigateToDetalMovieView(with movie: MovieHomeScreen, view: UIViewController) {
         MovieDetailRouter.createModule(view: view, movie: movie)
     }
     

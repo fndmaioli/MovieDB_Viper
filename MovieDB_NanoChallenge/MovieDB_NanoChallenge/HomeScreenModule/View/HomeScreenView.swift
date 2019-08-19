@@ -14,6 +14,8 @@ class HomeScreenView: UIViewController {
     var presenter: HomeScreenPresenterProtocol!
     @IBOutlet weak var tableView: UITableView!
     var popularMovies: HomeScreenEntity?
+    var nowPlayingMovies: HomeScreenEntity?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -30,6 +32,13 @@ extension HomeScreenView: HomeScreenViewProtocol {
         self.popularMovies = object
         DispatchQueue.main.async {
             self.tableView.reloadData()
+        }
+    }
+    
+    func presenterDidFetch(nowPlayingMovies object: HomeScreenEntity) {
+        self.nowPlayingMovies = object
+        DispatchQueue.main.async {
+            self.tableView.reloadSections([0], with: .none)
         }
     }
     
@@ -71,6 +80,8 @@ extension HomeScreenView: UITableViewDataSource, UITableViewDelegate {
             if cell == nil {
                 cell = CollectionTableViewCell.customCell
             }
+            
+            cell?.movies = nowPlayingMovies?.movieArr
             
             return cell!
         } else {

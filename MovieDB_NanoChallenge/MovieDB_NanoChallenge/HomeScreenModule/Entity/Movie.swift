@@ -8,8 +8,9 @@
 
 import Foundation
 
-struct Movie {
+struct MovieHomeScreen {
     
+    var id: String
     var name: String
     var cover: Data?
     var description: String

@@ -19,24 +19,29 @@ protocol MovieDetailViewProtocol: class {
     // Update UI with value returned.
     /// Set the view Object of Type MovieDetailEntity
 //    func set(object: MovieDetailEntity)
+    func didGetGenres(genres: [Genre])
+    func didNotGetGenres()
 }
 
 //MARK: Interactor -
 /// MovieDetail Module Interactor Protocol
 protocol MovieDetailInteractorProtocol {
     // Fetch Object from Data Layer
-    func fetch(objectFor presenter: MovieDetailPresenterProtocol)
+    func fetchMovieGenres(objectFor presenter: MovieDetailPresenterProtocol, movie: MovieHomeScreen)
+    
 }
 
 //MARK: Presenter -
 /// MovieDetail Module Presenter Protocol
 protocol MovieDetailPresenterProtocol {
+    func fetchMovie(objectFor view: MovieDetailViewProtocol) -> MovieHomeScreen
     /// The presenter will fetch data from the Interactor thru implementing the Interactor fetch function.
     func fetch(objectFor view: MovieDetailViewProtocol)
     /// The Interactor will inform the Presenter a successful fetch.
-    func interactor(_ interactor: MovieDetailInteractorProtocol, didFetch object: MovieDetailEntity)
+    func interactor(_ interactor: MovieDetailInteractorProtocol, didFetch object: [Genre])
     /// The Interactor will inform the Presenter a failed fetch.
     func interactor(_ interactor: MovieDetailInteractorProtocol, didFailWith error: Error)
+    func fetchMovieGenres(objectFor view: MovieDetailViewProtocol, movie: MovieHomeScreen)
 }
 
 //MARK: Router (aka: Wireframe) -

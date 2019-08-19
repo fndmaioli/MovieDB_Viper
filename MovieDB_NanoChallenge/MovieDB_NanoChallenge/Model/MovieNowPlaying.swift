@@ -4,19 +4,25 @@
 
 import Foundation
 
-public struct MovieTopRated: Codable {
+public struct MovieNowPlaying: Codable {
     let page, totalResults, totalPages: Int
-    let results: [ResultTopRated]
-    
+    let results: [ResultNowPlaying]
+    let dates: [DateMovie]
     enum CodingKeys: String, CodingKey {
         case page
         case totalResults = "total_results"
         case totalPages = "total_pages"
         case results
+        case dates
     }
 }
 
-public struct ResultTopRated: Codable {
+public struct DateMovie: Codable {
+    let maximum: String
+    let minimum: String
+}
+
+public struct ResultNowPlaying: Codable {
     let voteCount, id: Int
     let video: Bool
     let voteAverage: Double

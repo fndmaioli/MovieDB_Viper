@@ -11,11 +11,23 @@ import UIKit
 class CollectionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var movies: [Movie]?
+    var movies: [MovieHomeScreen]?
     let cellReuseID = "CollectionViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        let deviceSize = UIScreen.main.bounds.size
+        let cardWidthToScreenWidthRatio = 0.89 as CGFloat
+        let cardWidth = deviceSize.width*cardWidthToScreenWidthRatio
+        flowLayout.itemSize = CGSize(width: cardWidth, height: 420)
+        flowLayout.minimumLineSpacing = 0.0
+        flowLayout.minimumInteritemSpacing = 0.0
+        let cardConstraintToScreenWidthRatio = 0.048 as CGFloat
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: cardConstraintToScreenWidthRatio*deviceSize.width, bottom: 0, right: cardConstraintToScreenWidthRatio*deviceSize.width)
+        self.collectionView.collectionViewLayout = flowLayout
         
         let cellNib = UINib(nibName: "MovieCollectionViewCell", bundle: nil)
         self.collectionView.register(cellNib, forCellWithReuseIdentifier: cellReuseID)
@@ -43,9 +55,9 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseID, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseID, for: indexPath) as! MovieCollectionViewCell
         if let movie = self.movies?[indexPath.item] {
-            
+            cell.updateCellWithData(movie: movie)
         }
         
         return cell

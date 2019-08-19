@@ -21,16 +21,23 @@ class HomeScreenPresenter {
 
 // MARK: - extending HomeScreenPresenter to implement it's protocol
 extension HomeScreenPresenter: HomeScreenPresenterProtocol {
-    func pushToMovieDetail(with movie: Movie, view: UIViewController) {
+    func pushToMovieDetail(with movie: MovieHomeScreen, view: UIViewController) {
         router?.navigateToDetalMovieView(with: movie, view: view)
     }
     
     func fetch(objectFor view: HomeScreenViewProtocol) {
-        interactor!.fetch(objectFor: self)
+        interactor?.fetchPopularMovies(objectFor: self)
+        interactor?.fetchNowPlayingMovies(objectFor: self)
+        
     }
     
-    func interactor(_ interactor: HomeScreenInteractorProtocol, didFetch object: HomeScreenEntity) {
+    func interactor(_ interactor: HomeScreenInteractorProtocol, didFetchNowPlayingMovies object: HomeScreenEntity) {
+        view?.presenterDidFetch(nowPlayingMovies: object)
+    }
+    
+    func interactor(_ interactor: HomeScreenInteractorProtocol, didFetchPopularMovies object: HomeScreenEntity) {
         view?.presenterDidFetch(popularMovies: object)
+
     }
     
     func interactorDid(_ interactor: HomeScreenInteractorProtocol, FailWith error: Error) {

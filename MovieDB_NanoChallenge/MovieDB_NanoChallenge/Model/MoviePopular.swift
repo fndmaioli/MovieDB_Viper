@@ -23,7 +23,7 @@ public struct ResultPopular: Codable, MovieGeneral {
     let title: String
     let popularity: Double
     let posterPath: String
-    let originalLanguage: OriginalLanguage
+    let originalLanguage: String
     let originalTitle: String
     let genreIDS: [Int]
     let backdropPath: String
@@ -45,12 +45,6 @@ public struct ResultPopular: Codable, MovieGeneral {
     }
 }
 
-enum OriginalLanguage: String, Codable {
-    case en = "en"
-    case ja = "ja"
-    case ko = "ko"
-}
-
 
 protocol MovieGeneral {
     var title: String { get }
@@ -59,4 +53,31 @@ protocol MovieGeneral {
     var posterPath: String { get }
     var overview: String { get }
     var backdropPath: String { get }
+}
+
+struct MovieDetail: Codable {
+    let backdropPath: String?
+    let genres: [Genre]?
+    let id: Int?
+    let imdbID, originalTitle, overview: String?
+    let popularity: Double?
+    let posterPath: String?
+    let voteAverage: Double?
+    let title: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case backdropPath = "backdrop_path"
+        case genres, id
+        case imdbID = "imdb_id"
+        case originalTitle = "original_title"
+        case overview, popularity
+        case posterPath = "poster_path"
+        case voteAverage = "vote_average"
+        case title
+    }
+}
+
+struct Genre: Codable {
+    var id: Int?
+    var name: String?
 }

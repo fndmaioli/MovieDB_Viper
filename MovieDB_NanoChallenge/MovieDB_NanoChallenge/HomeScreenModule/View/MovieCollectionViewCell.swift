@@ -19,10 +19,11 @@ class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     
-    var movie: Movie?
+    var movie: MovieHomeScreen?
     
-    func updateCellWithData(movie: Movie){
+    func updateCellWithData(movie: MovieHomeScreen){
         self.movie = movie
+        self.titleLabel.text = movie.name
     }
 
 }

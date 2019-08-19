@@ -24,13 +24,35 @@ class MovieDetailView: UIViewController {
         super.viewDidLoad()
         
         // Informs the Presenter that the View is ready to receive data.
-        presenter.fetch(objectFor: self)
+        let movie = presenter.fetchMovie(objectFor: self)
+        presenter.fetchMovieGenres(objectFor: self, movie: movie)
+        movieTitle.text = movie.name
+        movieRating.text = movie.rating
+        movieDescription.text = movie.description
+        if let cover = movie.cover {
+            movieImage.image = UIImage(data: cover)
+        }
+        movieCategory.text = "Loading genres..."
     }
     
 }
 
 // MARK: - extending MovieDetailView to implement it's protocol
 extension MovieDetailView: MovieDetailViewProtocol {
+    func didGetGenres(genres: [Genre]) {
+        DispatchQueue.main.async {
+            self.movieCategory.text = genres.map({ (genre) -> String in
+                return genre.name ?? ""
+            }).joined(separator: ", ")
+        }
+    }
+    
+    func didNotGetGenres() {
+        DispatchQueue.main.async {
+            self.movieCategory.isHidden = true
+        }
+    }
+    
     
     
 }

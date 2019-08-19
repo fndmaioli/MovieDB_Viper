@@ -13,22 +13,37 @@ class HomeScreenInteractor: HomeScreenInteractorProtocol {
     
     var presenter: HomeScreenPresenterProtocol!
     
-    func fetch(objectFor presenter: HomeScreenPresenterProtocol) {
-        
+    func fetchPopularMovies(objectFor presenter: HomeScreenPresenterProtocol) {
         APIService.getPopularMovies { (movieList) in
             if movieList == nil {
 //                self.presenter.interactorDid(self, FailWith: Error.self as! Error)
             }
-            var entity = HomeScreenEntity(movieArr: [Movie]())
+            var entity = HomeScreenEntity(movieArr: [MovieHomeScreen]())
             for movieRes in movieList!.results {
                 guard let imageUrl = URL(string: "https://image.tmdb.org/t/p/w500" + movieRes.posterPath) else { return }
                 let data = try! Data(contentsOf: imageUrl)
-                let movie = Movie(name: movieRes.title, cover: data, description: movieRes.overview, rating: String(movieRes.voteAverage))
+                let movie = MovieHomeScreen(id: "\(movieRes.id)", name: movieRes.title, cover: data, description: movieRes.overview, rating: String(movieRes.voteAverage))
                 entity.movieArr.append(movie)
             }
             
-            self.presenter.interactor(self, didFetch: entity)
+            self.presenter.interactor(self, didFetchPopularMovies: entity)
         }
     }
     
+    func fetchNowPlayingMovies(objectFor presenter: HomeScreenPresenterProtocol) {
+        APIService.getPopularMovies { (movieList) in
+            if movieList == nil {
+                //                self.presenter.interactorDid(self, FailWith: Error.self as! Error)
+            }
+            var entity = HomeScreenEntity(movieArr: [MovieHomeScreen]())
+            for movieRes in movieList!.results {
+                guard let imageUrl = URL(string: "https://image.tmdb.org/t/p/w500" + movieRes.posterPath) else { return }
+                let data = try! Data(contentsOf: imageUrl)
+                let movie = MovieHomeScreen(id: "\(movieRes.id)", name: movieRes.title, cover: data, description: movieRes.overview, rating: String(movieRes.voteAverage))
+                entity.movieArr.append(movie)
+            }
+            
+            self.presenter.interactor(self, didFetchNowPlayingMovies: entity)
+        }
+    }
 }
