@@ -9,13 +9,13 @@
 import UIKit
 
 protocol CollectionCellDelegate:class {
-    func delegateToDetails(movie: MovieHomeScreen)
+    func delegateToDetails(movie: Movie)
 }
 
 class CollectionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var movies: [MovieHomeScreen]?
+    var movies: [Movie]?
     let cellReuseID = "CollectionViewCell"
     var viewDelegate: CollectionCellDelegate!
     

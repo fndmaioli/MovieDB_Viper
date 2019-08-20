@@ -20,9 +20,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var starImage: UIImageView!
     
-    var movie: MovieHomeScreen?
+    var movie: Movie?
     
-    func updateCellWithData(movie: MovieHomeScreen){
+    func updateCellWithData(movie: Movie){
         self.movie = movie
         self.titleLabel.text = movie.name
         self.ratingLabel.text = movie.rating

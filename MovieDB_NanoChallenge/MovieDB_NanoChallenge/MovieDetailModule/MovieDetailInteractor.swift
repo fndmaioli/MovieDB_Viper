@@ -11,7 +11,9 @@ import UIKit
 /// MovieDetail Module Interactor
 class MovieDetailInteractor: MovieDetailInteractorProtocol {
     
-    func fetchMovieGenres(objectFor presenter: MovieDetailPresenterProtocol, movie: MovieHomeScreen){
+    var presenter: MovieDetailPresenterProtocol!
+    
+    func fetchMovieGenres(objectFor presenter: MovieDetailPresenterProtocol, movie: Movie){
         var genres = [Genre]()
         APIService.getMovieGenres(movieID: movie.id) { (genresAPI) in
             if let genresAPI = genresAPI {
@@ -22,15 +24,4 @@ class MovieDetailInteractor: MovieDetailInteractorProtocol {
             presenter.interactor(self, didFailWith: Error.self as! Error)
         }
     }
-    
-    
-    var presenter: MovieDetailPresenterProtocol!
-
-    
-    func fetch(objectFor presenter: MovieDetailPresenterProtocol) {
-        print("dont know")
-
-    }
-    
-
 }

@@ -31,7 +31,7 @@ class PopularMovieTableViewCell: UITableViewCell {
         return cell as! PopularMovieTableViewCell
     }
     
-    func updateCellwithData(movie: MovieHomeScreen) {
+    func updateCellwithData(movie: Movie) {
         titleLabel.text = movie.name
     }
     

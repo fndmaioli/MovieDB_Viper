@@ -133,7 +133,7 @@ extension HomeScreenView: SectionHeaderDelegate {
 }
 
 extension HomeScreenView: CollectionCellDelegate {
-    func delegateToDetails(movie: MovieHomeScreen) {
+    func delegateToDetails(movie: Movie) {
         presenter.pushToMovieDetail(with: movie, view: self)
     }
 }

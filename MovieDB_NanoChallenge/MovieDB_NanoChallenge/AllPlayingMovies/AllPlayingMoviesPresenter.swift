@@ -12,9 +12,8 @@ import UIKit
 class AllPlayingMoviesPresenter {
     
     var view: AllPlayingMoviesViewProtocol?
-    var interactor: AllPlayingMoviesInteractorProtocol?
     var router: AllPlayingMoviesRouterProtocol?
-    var movies: [MovieHomeScreen]!
+    var movies: [Movie]!
     
     init() {
         
@@ -23,26 +22,12 @@ class AllPlayingMoviesPresenter {
 
 // MARK: - extending AllPlayingMoviesPresenter to implement it's protocol
 extension AllPlayingMoviesPresenter: AllPlayingMoviesPresenterProtocol {
-    func getData(for view: AllPlayingMoviesViewProtocol) -> [MovieHomeScreen] {
+    func getData(for view: AllPlayingMoviesViewProtocol) -> [Movie] {
         return movies
     }
     
-    func pushToMovieDetail(with movie: MovieHomeScreen, view: UIViewController) {
+    func pushToMovieDetail(with movie: Movie, view: UIViewController) {
         router?.navigateToDetalMovieView(with: movie, view: view)
-    }
-    
-    func fetch(objectFor view: AllPlayingMoviesViewProtocol) {
-        print("Dont know")
-    }
-    
-    func interactor(_ interactor: AllPlayingMoviesInteractorProtocol, didFetch object: AllPlayingMoviesEntity) {
-        print("Dont know")
-
-    }
-    
-    func interactor(_ interactor: AllPlayingMoviesInteractorProtocol, didFailWith error: Error) {
-        print("Dont know")
-
     }
     
     

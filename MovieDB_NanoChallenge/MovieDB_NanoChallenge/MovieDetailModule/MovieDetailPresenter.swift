@@ -10,7 +10,7 @@ import UIKit
 
 /// MovieDetail Module Presenter
 class MovieDetailPresenter {
-    var movie: MovieHomeScreen!
+    var movie: Movie!
     var view: MovieDetailViewProtocol?
     var interactor: MovieDetailInteractorProtocol?
     var router: MovieDetailRouterProtocol?
@@ -21,7 +21,7 @@ class MovieDetailPresenter {
 
 // MARK: - extending MovieDetailPresenter to implement it's protocol
 extension MovieDetailPresenter: MovieDetailPresenterProtocol {
-    func fetchMovieGenres(objectFor view: MovieDetailViewProtocol, movie: MovieHomeScreen) {
+    func fetchMovieGenres(objectFor view: MovieDetailViewProtocol, movie: Movie) {
         interactor?.fetchMovieGenres(objectFor: self, movie: movie)
     }
     
@@ -29,16 +29,12 @@ extension MovieDetailPresenter: MovieDetailPresenterProtocol {
         view?.didGetGenres(genres: object)
     }
     
-    func fetchMovie(objectFor view: MovieDetailViewProtocol) -> MovieHomeScreen {
+    func fetchMovie(objectFor view: MovieDetailViewProtocol) -> Movie {
         return movie
     }
     
     func interactor(_ interactor: MovieDetailInteractorProtocol, didFailWith error: Error) {
         view?.didNotGetGenres()
-    }
-    
-    func fetch(objectFor view: MovieDetailViewProtocol) {
-        print("dont know")
     }
     
 }

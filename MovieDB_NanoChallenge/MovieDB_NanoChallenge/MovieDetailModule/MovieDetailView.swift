@@ -13,7 +13,6 @@ class MovieDetailView: UIViewController {
     
     var presenter: MovieDetailPresenterProtocol!
     
-    private var object : MovieDetailEntity?
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieCategory: UILabel!

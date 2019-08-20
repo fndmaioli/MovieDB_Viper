@@ -10,5 +10,5 @@ import UIKit
 
 /// HomeScreen Module Entity
 struct HomeScreenEntity {
-    var movieArr: [MovieHomeScreen]
+    var movieArr: [Movie]
 }

@@ -18,11 +18,11 @@ class HomeScreenInteractor: HomeScreenInteractorProtocol {
             if movieList == nil {
 //                self.presenter.interactorDid(self, FailWith: Error.self as! Error)
             }
-            var entity = HomeScreenEntity(movieArr: [MovieHomeScreen]())
+            var entity = HomeScreenEntity(movieArr: [Movie]())
             for movieRes in movieList!.results {
                 guard let imageUrl = URL(string: "https://image.tmdb.org/t/p/w500" + movieRes.posterPath) else { return }
                 let data = try! Data(contentsOf: imageUrl)
-                let movie = MovieHomeScreen(id: "\(movieRes.id)", name: movieRes.title, cover: data, description: movieRes.overview, rating: String(movieRes.voteAverage))
+                let movie = Movie(id: "\(movieRes.id)", name: movieRes.title, cover: data, description: movieRes.overview, rating: String(movieRes.voteAverage))
                 entity.movieArr.append(movie)
             }
             
@@ -35,11 +35,11 @@ class HomeScreenInteractor: HomeScreenInteractorProtocol {
             if movieList == nil {
                 //                self.presenter.interactorDid(self, FailWith: Error.self as! Error)
             }
-            var entity = HomeScreenEntity(movieArr: [MovieHomeScreen]())
+            var entity = HomeScreenEntity(movieArr: [Movie]())
             for movieRes in movieList!.results {
                 guard let imageUrl = URL(string: "https://image.tmdb.org/t/p/w500" + movieRes.posterPath) else { return }
                 let data = try! Data(contentsOf: imageUrl)
-                let movie = MovieHomeScreen(id: "\(movieRes.id)", name: movieRes.title, cover: data, description: movieRes.overview, rating: String(movieRes.voteAverage))
+                let movie = Movie(id: "\(movieRes.id)", name: movieRes.title, cover: data, description: movieRes.overview, rating: String(movieRes.voteAverage))
                 entity.movieArr.append(movie)
             }
             

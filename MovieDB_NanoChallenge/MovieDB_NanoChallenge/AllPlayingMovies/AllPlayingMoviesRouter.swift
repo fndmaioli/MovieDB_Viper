@@ -10,22 +10,19 @@ import UIKit
 
 /// AllPlayingMovies Module Router (aka: Wireframe)
 class AllPlayingMoviesRouter: AllPlayingMoviesRouterProtocol {
-    func navigateToDetalMovieView(with movie: MovieHomeScreen, view: UIViewController) {
+    func navigateToDetalMovieView(with movie: Movie, view: UIViewController) {
         MovieDetailRouter.createModule(view: view, movie: movie)
 
     }
     
-    class func createModule(view: UIViewController, movies: [MovieHomeScreen]){
+    class func createModule(view: UIViewController, movies: [Movie]){
         let movieView = mainstoryboard.instantiateViewController(withIdentifier: "AllPlayingMovies") as? AllPlayingMoviesView;
         let presenter = AllPlayingMoviesPresenter()
-        let interactor = AllPlayingMoviesInteractor()
         let router = AllPlayingMoviesRouter()
         
         presenter.movies = movies
         movieView!.presenter = presenter
-        interactor.presenter = presenter
         presenter.view = movieView
-        presenter.interactor = interactor
         presenter.router = router
         
         view.navigationController?.pushViewController(movieView!, animated: true)

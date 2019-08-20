@@ -34,8 +34,8 @@ protocol HomeScreenInteractorProtocol {
 //MARK: Presenter -
 /// HomeScreen Module Presenter Protocol
 protocol HomeScreenPresenterProtocol {
-    func pushToMovieDetail(with movie: MovieHomeScreen, view: UIViewController)
-    func pushToNowPlayingMovies(view: UIViewController, with movies: [MovieHomeScreen])
+    func pushToMovieDetail(with movie: Movie, view: UIViewController)
+    func pushToNowPlayingMovies(view: UIViewController, with movies: [Movie])
     /// The presenter will fetch data from the Interactor thru implementing the Interactor fetch function.
     func fetch(objectFor view: HomeScreenViewProtocol)
     /// The Interactor will inform the Presenter a successful fetch.
@@ -51,6 +51,6 @@ protocol HomeScreenPresenterProtocol {
 protocol HomeScreenRouterProtocol {
     // Show Details of Entity Object coming from ParentView Controller.
     // func showDetailsFor(object: HomeScreenEntity, parentViewController viewController: UIViewController)
-    func navigateToDetalMovieView(with movie: MovieHomeScreen, view: UIViewController)
-    func navigateToNowPlayingMoviesModule(view: UIViewController, with movies: [MovieHomeScreen])
+    func navigateToDetailMovieModule( view: UIViewController, with movie: Movie)
+    func navigateToNowPlayingMoviesModule(view: UIViewController, with movies: [Movie])
 }

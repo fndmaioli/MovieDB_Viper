@@ -12,10 +12,9 @@ import UIKit
 class AllPlayingMoviesView: UIViewController {
     
     var presenter: AllPlayingMoviesPresenterProtocol!
-    var object : AllPlayingMoviesEntity?
     
     @IBOutlet weak var collectionView: UICollectionView!
-    var movies: [MovieHomeScreen]?
+    var movies: [Movie]?
     let cellReuseID = "CollectionViewCell"
     
     override func viewDidLoad() {
@@ -42,9 +41,7 @@ class AllPlayingMoviesView: UIViewController {
 
 // MARK: - extending AllPlayingMoviesView to implement it's protocol
 extension AllPlayingMoviesView: AllPlayingMoviesViewProtocol {
-    func set(object: AllPlayingMoviesEntity) {
-        print("Dont know")
-    }
+
 }
 
 extension AllPlayingMoviesView: UICollectionViewDataSource, UICollectionViewDelegate {

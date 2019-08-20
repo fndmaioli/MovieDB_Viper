@@ -11,7 +11,7 @@ import UIKit
 /// MovieDetail Module Router (aka: Wireframe)
 class MovieDetailRouter: MovieDetailRouterProtocol {
     
-    class func createModule(view: UIViewController, movie: MovieHomeScreen) {
+    class func createModule(view: UIViewController, movie: Movie) {
         let movieView = mainstoryboard.instantiateViewController(withIdentifier: "MovieDetailView") as? MovieDetailView;
         let presenter = MovieDetailPresenter()
         let interactor = MovieDetailInteractor()
