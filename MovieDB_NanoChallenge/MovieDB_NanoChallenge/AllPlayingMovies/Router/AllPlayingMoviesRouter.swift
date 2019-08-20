@@ -20,7 +20,7 @@ class AllPlayingMoviesRouter: AllPlayingMoviesRouterProtocol {
         let presenter = AllPlayingMoviesPresenter()
         let router = AllPlayingMoviesRouter()
         
-        presenter.movies = movies
+        presenter.movies = AllPlayingMoviesEntity(movieArr: movies)
         movieView!.presenter = presenter
         presenter.view = movieView
         presenter.router = router

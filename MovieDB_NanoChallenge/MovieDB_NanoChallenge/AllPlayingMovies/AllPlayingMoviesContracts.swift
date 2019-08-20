@@ -32,7 +32,7 @@ protocol AllPlayingMoviesInteractorProtocol {
 
 protocol AllPlayingMoviesPresenterProtocol {
     
-    func getData(for view: AllPlayingMoviesViewProtocol) -> [Movie]
+    func getData(for view: AllPlayingMoviesViewProtocol) -> AllPlayingMoviesEntity
     func pushToMovieDetail(with movie: Movie, view: UIViewController)
     /// The presenter will fetch data from the Interactor thru implementing the Interactor fetch function.
     /// The Interactor will inform the Presenter a successful fetch.

@@ -13,7 +13,7 @@ class AllPlayingMoviesPresenter {
     
     var view: AllPlayingMoviesViewProtocol?
     var router: AllPlayingMoviesRouterProtocol?
-    var movies: [Movie]!
+    var movies: AllPlayingMoviesEntity!
     
     init() {
         
@@ -22,7 +22,7 @@ class AllPlayingMoviesPresenter {
 
 // MARK: - extending AllPlayingMoviesPresenter to implement it's protocol
 extension AllPlayingMoviesPresenter: AllPlayingMoviesPresenterProtocol {
-    func getData(for view: AllPlayingMoviesViewProtocol) -> [Movie] {
+    func getData(for view: AllPlayingMoviesViewProtocol) -> AllPlayingMoviesEntity {
         return movies
     }
     

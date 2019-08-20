@@ -34,7 +34,7 @@ protocol MovieDetailInteractorProtocol {
 //MARK: Presenter -
 /// MovieDetail Module Presenter Protocol
 protocol MovieDetailPresenterProtocol {
-    func fetchMovie(objectFor view: MovieDetailViewProtocol) -> Movie
+    func fetchMovie(objectFor view: MovieDetailViewProtocol) -> MovieDetailEntity
     /// The presenter will fetch data from the Interactor thru implementing the Interactor fetch function.
     /// The Interactor will inform the Presenter a successful fetch.
     func interactor(_ interactor: MovieDetailInteractorProtocol, didFetch object: [Genre])

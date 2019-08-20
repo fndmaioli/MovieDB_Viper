@@ -14,7 +14,7 @@ class AllPlayingMoviesView: UIViewController {
     var presenter: AllPlayingMoviesPresenterProtocol!
     
     @IBOutlet weak var collectionView: UICollectionView!
-    var movies: [Movie]?
+    var movies: AllPlayingMoviesEntity?
     let cellReuseID = "CollectionViewCell"
     
     override func viewDidLoad() {
@@ -46,13 +46,13 @@ extension AllPlayingMoviesView: AllPlayingMoviesViewProtocol {
 
 extension AllPlayingMoviesView: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies?.count ?? 0
+        return movies?.movieArr.count ?? 0
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseID, for: indexPath) as! MovieCollectionViewCell
-        if let movie = self.movies?[indexPath.item] {
+        if let movie = self.movies?.movieArr[indexPath.item] {
             cell.updateCellWithData(movie: movie)
         }
         
@@ -61,7 +61,7 @@ extension AllPlayingMoviesView: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let movies = movies else { return }
-        presenter.pushToMovieDetail(with: movies[indexPath.row], view: self)
+        presenter.pushToMovieDetail(with: movies.movieArr[indexPath.row], view: self)
     }
     
 }

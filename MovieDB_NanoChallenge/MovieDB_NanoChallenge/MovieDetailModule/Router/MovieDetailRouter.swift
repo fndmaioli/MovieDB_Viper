@@ -13,11 +13,10 @@ class MovieDetailRouter: MovieDetailRouterProtocol {
     
     class func createModule(view: UIViewController, movie: Movie) {
         let movieView = mainstoryboard.instantiateViewController(withIdentifier: "MovieDetailView") as? MovieDetailView;
-        let presenter = MovieDetailPresenter()
+        let presenter = MovieDetailPresenter(movie: MovieDetailEntity(movie: movie, genres: nil))
         let interactor = MovieDetailInteractor()
         let router = MovieDetailRouter()
         
-        presenter.movie = movie
         movieView!.presenter = presenter
         interactor.presenter = presenter
         presenter.view = movieView

@@ -24,14 +24,18 @@ class MovieDetailView: UIViewController {
         
         // Informs the Presenter that the View is ready to receive data.
         let movie = presenter.fetchMovie(objectFor: self)
-        presenter.fetchMovieGenres(objectFor: self, movie: movie)
-        movieTitle.text = movie.name
-        movieRating.text = movie.rating
-        movieDescription.text = movie.description
-        if let cover = movie.cover {
+        presenter.fetchMovieGenres(objectFor: self, movie: movie.movie)
+        movieTitle.text = movie.movie.name
+        movieRating.text = movie.movie.rating
+        movieDescription.text = movie.movie.description
+        if let cover = movie.movie.cover {
             movieImage.image = UIImage(data: cover)
         }
-        movieCategory.text = "Loading genres..."
+        if movie.genres == nil {
+            movieCategory.text = "Loading genres..."
+        } else {
+            self.didGetGenres(genres: movie.genres!)
+        }
     }
     
 }
