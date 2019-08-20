@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol CollectionCellDelegate:class {
+    func delegateToDetails(movie: MovieHomeScreen)
+}
+
 class CollectionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
     var movies: [MovieHomeScreen]?
     let cellReuseID = "CollectionViewCell"
+    var viewDelegate: CollectionCellDelegate!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,19 +25,20 @@ class CollectionTableViewCell: UITableViewCell {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         let deviceSize = UIScreen.main.bounds.size
-        let cardWidthToScreenWidthRatio = 0.89 as CGFloat
+        let cardWidthToScreenWidthRatio = 0.40 as CGFloat
         let cardWidth = deviceSize.width*cardWidthToScreenWidthRatio
-        flowLayout.itemSize = CGSize(width: cardWidth, height: 420)
-        flowLayout.minimumLineSpacing = 0.0
-        flowLayout.minimumInteritemSpacing = 0.0
-        let cardConstraintToScreenWidthRatio = 0.048 as CGFloat
-        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: cardConstraintToScreenWidthRatio*deviceSize.width, bottom: 0, right: cardConstraintToScreenWidthRatio*deviceSize.width)
+        flowLayout.itemSize = CGSize(width: cardWidth, height: 277)
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.minimumInteritemSpacing = 0
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         self.collectionView.collectionViewLayout = flowLayout
         
         let cellNib = UINib(nibName: "MovieCollectionViewCell", bundle: nil)
         self.collectionView.register(cellNib, forCellWithReuseIdentifier: cellReuseID)
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        
         
     }
 
@@ -51,7 +57,10 @@ class CollectionTableViewCell: UITableViewCell {
 extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies?.count ?? 0
+        if movies?.count != nil {
+            return 5
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -63,5 +72,8 @@ extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let movies = movies else { return }
+        viewDelegate.delegateToDetails(movie: movies[indexPath.row])
+    }
 }

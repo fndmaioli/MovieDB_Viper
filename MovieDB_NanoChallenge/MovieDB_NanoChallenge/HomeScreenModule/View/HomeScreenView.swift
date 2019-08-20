@@ -22,6 +22,12 @@ class HomeScreenView: UIViewController {
         tableView.delegate = self
         // Informs the Presenter that the View is ready to receive data.
         presenter.fetch(objectFor: self)
+        
+        let nib = UINib(nibName: "SectionHeaderView", bundle: nil)
+        tableView.register(nib, forHeaderFooterViewReuseIdentifier: "SectionHeaderView")
+        tableView.separatorColor = UIColor.clear
+        
+        tableView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     }
     
 }
@@ -50,23 +56,15 @@ extension HomeScreenView: UITableViewDataSource, UITableViewDelegate {
         if section == 0 {
             return 1
         } else {
-            return 5
+            return popularMovies?.movieArr.count ?? 0
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 50
+            return 297
         } else {
-            return 100
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Now Playing"
-        } else {
-            return "Popular Movies"
+            return 160
         }
     }
     
@@ -82,7 +80,7 @@ extension HomeScreenView: UITableViewDataSource, UITableViewDelegate {
             }
             
             cell?.movies = nowPlayingMovies?.movieArr
-            
+            cell?.viewDelegate = self
             return cell!
         } else {
             var cell = tableView.dequeueReusableCell(withIdentifier: "PopularMovieTableViewCell") as? PopularMovieTableViewCell
@@ -94,6 +92,8 @@ extension HomeScreenView: UITableViewDataSource, UITableViewDelegate {
             cell?.ratingLabel.text = self.popularMovies?.movieArr[indexPath.row].rating
             guard let data = self.popularMovies?.movieArr[indexPath.row].cover else { return cell! }
             cell?.imageView?.image = UIImage(data: data)
+            cell?.imageView?.layer.cornerRadius = 10
+            cell?.imageView?.clipsToBounds = true
             
             return cell!
         }
@@ -103,5 +103,27 @@ extension HomeScreenView: UITableViewDataSource, UITableViewDelegate {
         presenter.pushToMovieDetail(with: (popularMovies?.movieArr[indexPath.row])!, view: self)
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        // Dequeue with the reuse identifier
+        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionHeaderView")
+        let header = cell as! SectionHeaderTableView
+        
+        if section == 0 {
+            header.sectionTitle.text = "Now Playing"
+        }else {
+            header.sectionTitle.text = "Popular Movies"
+        }
+
+        return cell
+    }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+}
+
+extension HomeScreenView: CollectionCellDelegate {
+    func delegateToDetails(movie: MovieHomeScreen) {
+        presenter.pushToMovieDetail(with: movie, view: self)
+    }
 }

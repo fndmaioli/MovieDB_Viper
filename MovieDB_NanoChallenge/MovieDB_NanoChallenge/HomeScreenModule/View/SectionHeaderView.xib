@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SectionHeaderView" customModule="MovieDB_NanoChallenge" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="tJq-sU-e9j" customClass="SectionHeaderTableView" customModule="MovieDB_NanoChallenge" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="632" height="101"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5v-Hl-s2d">
+                    <rect key="frame" x="15" y="70" width="44" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0JW-1r-6GC">
+                    <rect key="frame" x="571" y="72" width="46" height="19"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="1"/>
+                    <state key="normal" title="See all">
+                        <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="0JW-1r-6GC" secondAttribute="trailing" constant="15" id="1Ce-FG-qsB"/>
+                <constraint firstAttribute="bottom" secondItem="0JW-1r-6GC" secondAttribute="bottom" constant="10" id="R0g-fG-Kqd"/>
+                <constraint firstAttribute="bottom" secondItem="f5v-Hl-s2d" secondAttribute="bottom" constant="10" id="aX9-az-7n9"/>
+                <constraint firstItem="f5v-Hl-s2d" firstAttribute="leading" secondItem="tJq-sU-e9j" secondAttribute="leading" constant="15" id="iYe-fb-Leq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="iKO-EH-DkW"/>
+            <connections>
+                <outlet property="sectionTitle" destination="f5v-Hl-s2d" id="LVR-zz-IoQ"/>
+            </connections>
+            <point key="canvasLocation" x="911.59420289855075" y="-618.41517857142856"/>
+        </view>
+    </objects>
+</document>
