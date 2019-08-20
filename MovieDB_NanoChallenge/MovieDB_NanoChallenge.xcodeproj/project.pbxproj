@@ -91,7 +91,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6D1F16F3230C67E700A6474A /* AllPlayingMovies */ = {
+		6D1F16F3230C67E700A6474A /* AllPlayingMoviesModule */ = {
 			isa = PBXGroup;
 			children = (
 				6D1F16FE230C7D6200A6474A /* View */,
@@ -100,7 +100,7 @@
 				6D1F1701230C7D7400A6474A /* Router */,
 				6D1F16E8230C67D500A6474A /* AllPlayingMoviesContracts.swift */,
 			);
-			path = AllPlayingMovies;
+			path = AllPlayingMoviesModule;
 			sourceTree = "<group>";
 		};
 		6D1F16F4230C763B00A6474A /* GeneralComponents */ = {
@@ -208,7 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				6D1F16F4230C763B00A6474A /* GeneralComponents */,
-				6D1F16F3230C67E700A6474A /* AllPlayingMovies */,
+				6D1F16F3230C67E700A6474A /* AllPlayingMoviesModule */,
 				6DBEBFD92307361D00DA9723 /* MovieDetailModule */,
 				6D8A10722304A36D0063F059 /* HomeScreenModule */,
 				6D8A10522304A2890063F059 /* AppDelegate.swift */,

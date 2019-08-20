@@ -57,10 +57,13 @@ class CollectionTableViewCell: UITableViewCell {
 extension CollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if movies?.count != nil {
+        guard let numMovies = movies?.count else {
+            return 0
+        }
+        if numMovies > 5 {
             return 5
         }
-        return 0
+        return numMovies
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

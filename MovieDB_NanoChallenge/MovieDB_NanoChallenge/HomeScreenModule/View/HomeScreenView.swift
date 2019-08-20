@@ -15,9 +15,15 @@ class HomeScreenView: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var popularMovies: HomeScreenEntity?
     var nowPlayingMovies: HomeScreenEntity?
+    var loading: UIActivityIndicatorView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.isHidden = true
+        loading = UIActivityIndicatorView(frame: CGRect(x: self.view.frame.maxX/2, y: self.view.frame.maxY/2, width: 0, height: 0))
+        loading?.color = .black
+        self.view.addSubview(loading!)
+        loading!.startAnimating()
         tableView.dataSource = self
         tableView.delegate = self
         // Informs the Presenter that the View is ready to receive data.
@@ -35,9 +41,17 @@ class HomeScreenView: UIViewController {
 // MARK: - extending HomeScreenView to implement it's protocol
 extension HomeScreenView: HomeScreenViewProtocol {
     func presenterDidFetch(popularMovies object: HomeScreenEntity) {
-        self.popularMovies = object
+        var filteredArr = object.movieArr.sorted(by: { $0.rating > $1.rating })
+        
+        self.popularMovies = HomeScreenEntity(movieArr: filteredArr)
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            if self.popularMovies != nil && self.nowPlayingMovies != nil {
+                self.tableView.isHidden = false
+                self.loading?.stopAnimating()
+                self.loading?.isHidden = true
+            }
         }
     }
     
@@ -45,7 +59,13 @@ extension HomeScreenView: HomeScreenViewProtocol {
         self.nowPlayingMovies = object
         DispatchQueue.main.async {
             self.tableView.reloadSections([0], with: .none)
+            if self.popularMovies != nil && self.nowPlayingMovies != nil {
+                self.tableView.isHidden = false
+                self.loading?.stopAnimating()
+                self.loading?.isHidden = true
+            }
         }
+        
     }
     
 }
