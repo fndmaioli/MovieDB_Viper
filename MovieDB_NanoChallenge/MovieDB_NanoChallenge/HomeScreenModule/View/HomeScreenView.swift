@@ -110,8 +110,10 @@ extension HomeScreenView: UITableViewDataSource, UITableViewDelegate {
         
         if section == 0 {
             header.sectionTitle.text = "Now Playing"
+            header.delegate = self
         }else {
             header.sectionTitle.text = "Popular Movies"
+            header.seeAllButton.isHidden = true
         }
 
         return cell
@@ -120,6 +122,14 @@ extension HomeScreenView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
+}
+
+extension HomeScreenView: SectionHeaderDelegate {
+    func didClickSeeAllButton() {
+        guard let movies = nowPlayingMovies?.movieArr else { return }
+        presenter.pushToNowPlayingMovies(view: self, with: movies)
+    }
+    
 }
 
 extension HomeScreenView: CollectionCellDelegate {

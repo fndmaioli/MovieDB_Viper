@@ -10,7 +10,9 @@ import UIKit
 
 /// HomeScreen Module Router (aka: Wireframe)
 class HomeScreenRouter: HomeScreenRouterProtocol {
-    
+    func navigateToNowPlayingMoviesModule(view: UIViewController, with movies: [MovieHomeScreen]) {
+        AllPlayingMoviesRouter.createModule(view: view, movies: movies)
+    }
     
     func navigateToDetalMovieView(with movie: MovieHomeScreen, view: UIViewController) {
         MovieDetailRouter.createModule(view: view, movie: movie)

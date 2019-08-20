@@ -21,6 +21,10 @@ class HomeScreenPresenter {
 
 // MARK: - extending HomeScreenPresenter to implement it's protocol
 extension HomeScreenPresenter: HomeScreenPresenterProtocol {
+    func pushToNowPlayingMovies(view: UIViewController, with movies: [MovieHomeScreen]) {
+        router?.navigateToNowPlayingMoviesModule(view: view, with: movies)
+    }
+    
     func pushToMovieDetail(with movie: MovieHomeScreen, view: UIViewController) {
         router?.navigateToDetalMovieView(with: movie, view: view)
     }

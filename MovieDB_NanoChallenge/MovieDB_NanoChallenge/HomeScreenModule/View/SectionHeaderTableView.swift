@@ -8,9 +8,17 @@
 
 import UIKit
 
+protocol SectionHeaderDelegate:class {
+    func didClickSeeAllButton()
+}
+
 class SectionHeaderTableView: UITableViewHeaderFooterView {
 
     @IBOutlet weak var sectionTitle: UILabel!
-    
+    @IBOutlet weak var seeAllButton: UIButton!
+    var delegate: SectionHeaderDelegate?
 
+    @IBAction func selectSeeAllButton(_ sender: UIButton) {
+        delegate?.didClickSeeAllButton()
+    }
 }
