@@ -42,7 +42,6 @@ class HomeScreenView: UIViewController {
 extension HomeScreenView: HomeScreenViewProtocol {
     func presenterDidFetch(popularMovies object: HomeScreenEntity) {
         var filteredArr = object.movieArr.sorted(by: { $0.rating > $1.rating })
-        
         self.popularMovies = HomeScreenEntity(movieArr: filteredArr)
         
         DispatchQueue.main.async {
