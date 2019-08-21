@@ -19,6 +19,10 @@ class MovieDetailView: UIViewController {
     @IBOutlet weak var movieRating: UILabel!
     @IBOutlet weak var movieDescription: UITextView!
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.title = "Movie Details"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +40,8 @@ class MovieDetailView: UIViewController {
         } else {
             self.didGetGenres(genres: movie.genres!)
         }
+        movieImage.layer.cornerRadius = 10
+        movieImage.clipsToBounds = true
     }
     
 }

@@ -32,8 +32,30 @@ class HomeScreenView: UIViewController {
         let nib = UINib(nibName: "SectionHeaderView", bundle: nil)
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: "SectionHeaderView")
         tableView.separatorColor = UIColor.clear
-        
         tableView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationItem.title = "Movie Details"
+        
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.title = "MovieDB"
+        
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
 }
@@ -41,7 +63,7 @@ class HomeScreenView: UIViewController {
 // MARK: - extending HomeScreenView to implement it's protocol
 extension HomeScreenView: HomeScreenViewProtocol {
     func presenterDidFetch(popularMovies object: HomeScreenEntity) {
-        var filteredArr = object.movieArr.sorted(by: { $0.rating > $1.rating })
+        let filteredArr = object.movieArr.sorted(by: { $0.rating > $1.rating })
         self.popularMovies = HomeScreenEntity(movieArr: filteredArr)
         
         DispatchQueue.main.async {

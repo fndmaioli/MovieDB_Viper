@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nav = UINavigationController(rootViewController: view)
         
         window = UIWindow(frame: UIScreen.main.bounds)
+        nav.navigationBar.tintColor = .black
+        nav.navigationItem.title = "MovieDB"
+        
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
         

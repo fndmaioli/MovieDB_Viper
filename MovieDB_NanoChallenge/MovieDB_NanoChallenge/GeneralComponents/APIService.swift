@@ -61,8 +61,6 @@ struct APIService {
             return
         })
         dataTask.resume()
-        
-
     }
     
     static func getNowPlayingMovies(fromPage page: Int = 1, completionHandler completion: @escaping (MovieNowPlaying?) -> Void) {

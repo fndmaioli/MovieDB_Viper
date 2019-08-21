@@ -17,6 +17,16 @@ class AllPlayingMoviesView: UIViewController {
     var movies: AllPlayingMoviesEntity?
     let cellReuseID = "CollectionViewCell"
     
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.title = "Now Playing"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
